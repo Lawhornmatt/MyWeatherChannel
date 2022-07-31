@@ -32,10 +32,17 @@ body {
 
 #displaySect p {
     font-size: 1.5rem;
+    margin: .5rem;
 }
 
 
 /* ACCESSIBILITY  */
+@media (max-width: 1400px) {
+    #displaySect p {
+        font-size: 1rem;
+    }
+}
+
 @media (max-width: 690px) {
 
 }
