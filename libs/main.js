@@ -1,16 +1,25 @@
-//INITIALIZATIONS
+// ====================
+//      IMPORTS
+// ====================
 
-import * as X from "Y";
+//import * as X from "Y";
+
+// ====================
+//  ACCESS HTML BY DOM
+// ====================
+
+// var YADA = document.getElementById("YADA");
+// var YADA = $('.yada');
+
+// ====================
+//   INITIALIZATIONS
+// ====================
+
+// ====================
+//      FUNCTIONS
+// ====================
 
 
-//ACCESS HTML BY DOM
-
-// Stuff:
-var X = document.getElementById("Y");
-
-//EVENT LISTENERS
-
-//FUNCTIONS
 
 
 
