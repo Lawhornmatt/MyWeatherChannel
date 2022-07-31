@@ -12,9 +12,20 @@ body {
     color: var(--main-off-wht);
 }
 
+
 /* CLASSES  */
 
+.jumbotron {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+
 /* IDs  */
+#titleEl {
+    font-size: 4rem;
+}
+
 
 /* ACCESSIBILITY  */
 @media (max-width: 690px) {
