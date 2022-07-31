@@ -37,7 +37,7 @@ TBD
 TBD
 
 ## VISIT:
-TBD
+Please visit [my weather application](https://lawhornmatt.github.io/Ch6_MyWeatherChannel/) to help plan your next trip!
 
 ## CREDIT:
 Matthew Lawhorn, End July / Beginning August 2022
