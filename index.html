@@ -32,70 +32,126 @@
     <h1 class="text-center font-weight-bold" id="titleEl">Weather View</h1>
   </header>
 
+  <!-- Wrappers for everything south of the header  -->
   <div class="container-fluid">
-  <div class="row">
-    <!-- ==================== -->
-    <!--  SEARCH & HISTORY    -->
-    <!-- ==================== -->  
-    <section class="col-3">
-      <!-- Container for search bar and button -->
-      <form>
-        <h2>Search for a City:</h2>
-        <input type="text" class="form-control" id="citySearch" placeholder="Austin, Tx" aria-label="CityToSearch"> 
-        <div class="px-3 mt-3">
-          <button type="button" class="btn btn-danger btn-block">Search</button>
-        </div>
-      </form>
+    <div class="row">
 
-      <!-- A snazzy dividing line -->
-      <hr class="my-4 bg-light">
+      <!-- ==================== -->
+      <!--  SEARCH & HISTORY    -->
+      <!-- ==================== -->  
+      <section class="col-3">
 
-      <!-- Container for the dynamic search history  -->
-      <div class="px-2">
-        <button type="button" class="btn btn-light btn-block">Example</button>
-        <button type="button" class="btn btn-light btn-block">Example</button>
-        <button type="button" class="btn btn-light btn-block">Example</button>
-      </div>
-    </section>
-
-    <!-- ==================== -->
-    <!--      DISPLAY         -->
-    <!-- ==================== --> 
-    <section class="col-9" id="displaySect">
-      <!-- Displays the searched city along with Temp, Wind, Humi, and UV -->
-      <div class="border border-white p-2" id="cityBox">
-        <h1>Houston + Date</h1>
-        <p>Temp: XX</p>
-        <p>Humidity: YY</p>
-        <p>UV index: BB</p>
-      </div>
-
-      <!-- Displays searched City's 5-day forcast  -->
-      <div class="my-4">
-        <h2>5-day Forecast:</h2>
-        <div class="container-fluid">
-          <div class="row">
-
-            <!-- Example future forcast card  -->
-            <div class="card bg-secondary col-2 p-0">
-              <div class="card-header m-0">
-                <p class="text-center m-0">Date</p>
-              </div>
-              <div class="card-body">
-                <img class="smlThumbNail" src="./assets/images/weather.ico"></img>
-                <p>Temp: XX</p>
-                <p>Humidity: YY</p>
-                <p>UV index: BB</p>
-              </div>
-            </div>
-
-
+        <!-- Container for search bar and button -->
+        <form>
+          <h2>Search for a City:</h2>
+          <input type="text" class="form-control" id="citySearch" placeholder="Austin, Tx" aria-label="CityToSearch"> 
+          <div class="px-3 mt-3">
+            <button type="button" class="btn btn-danger btn-block">Search</button>
           </div>
+        </form>
+
+        <!-- A snazzy dividing line -->
+        <hr class="my-4 bg-light">
+
+        <!-- Container for the dynamic search history  -->
+        <div class="px-2">
+          <button type="button" class="btn btn-light btn-block">Example</button>
+          <button type="button" class="btn btn-light btn-block">Example</button>
+          <button type="button" class="btn btn-light btn-block">Example</button>
+        </div>
+      </section>
+
+      <!-- ==================== -->
+      <!--      DISPLAY         -->
+      <!-- ==================== --> 
+      <section class="col-9" id="displaySect">
+
+        <!-- Displays the searched city along with Temp, Wind, Humi, and UV -->
+        <div class="border border-white p-2" id="cityBox">
+          <h1>Houston + Date</h1>
+          <p>Temp: XX</p>
+          <p>Humidity: YY</p>
+          <p>UV index: BB</p>
         </div>
 
-      </div>
-    </section>
-  </div>
+        <!-- Displays searched City's 5-day forcast  -->
+        <div class="my-4">
+          <h2>5-day Forecast:</h2>
+          <div class="container-fluid">
+            <div class="row">
+
+              <!-- Example future forcast card  -->
+              <div class="card bg-secondary col-2 p-0 mx-3">
+                <div class="card-header m-0">
+                  <p class="text-center m-0">Date</p>
+                </div>
+                <div class="card-body">
+                  <img class="smlThumbNail" src="./assets/images/weather.ico"></img>
+                  <p>Temp: XX</p>
+                  <p>Humidity: YY</p>
+                  <p>UV index: BB</p>
+                </div>
+              </div>
+
+              <!-- Example future forcast card  -->
+              <div class="card bg-secondary col-2 p-0 mx-3">
+                <div class="card-header m-0">
+                  <p class="text-center m-0">Date</p>
+                </div>
+                <div class="card-body">
+                  <img class="smlThumbNail" src="./assets/images/weather.ico"></img>
+                  <p>Temp: XX</p>
+                  <p>Humidity: YY</p>
+                  <p>UV index: BB</p>
+                </div>
+              </div>
+
+              <!-- Example future forcast card  -->
+              <div class="card bg-secondary col-2 p-0 mx-3">
+                <div class="card-header m-0">
+                  <p class="text-center m-0">Date</p>
+                </div>
+                <div class="card-body">
+                  <img class="smlThumbNail" src="./assets/images/weather.ico"></img>
+                  <p>Temp: XX</p>
+                  <p>Humidity: YY</p>
+                  <p>UV index: BB</p>
+                </div>
+              </div>
+
+              <!-- Example future forcast card  -->
+              <div class="card bg-secondary col-2 p-0 mx-3">
+                <div class="card-header m-0">
+                  <p class="text-center m-0">Date</p>
+                </div>
+                <div class="card-body">
+                  <img class="smlThumbNail" src="./assets/images/weather.ico"></img>
+                  <p>Temp: XX</p>
+                  <p>Humidity: YY</p>
+                  <p>UV index: BB</p>
+                </div>
+              </div>
+
+              <!-- Example future forcast card  -->
+              <div class="card bg-secondary col-2 p-0 mx-3">
+                <div class="card-header m-0">
+                  <p class="text-center m-0">Date</p>
+                </div>
+                <div class="card-body">
+                  <img class="smlThumbNail" src="./assets/images/weather.ico"></img>
+                  <p>Temp: XX</p>
+                  <p>Humidity: YY</p>
+                  <p>UV index: BB</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
   </div>
 
 
