@@ -20,10 +20,18 @@ body {
     padding-bottom: 1rem;
 }
 
+.smlThumbNail {
+    max-width: 4rem;
+    max-height: 4rem;
+}
 
 /* IDs  */
 #titleEl {
     font-size: 4rem;
+}
+
+#displaySect p {
+    font-size: 1.5rem;
 }
 
 
