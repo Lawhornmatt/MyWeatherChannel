@@ -8,16 +8,17 @@
 //  ACCESS HTML BY DOM
 // ====================
 
-const fetchBtn = $('#fetchBtn');
-const cityBox = $('#cityBox');
-const gibFCCs = $('#gibFCCs');
+const fetchBtn = document.getElementById('fetchBtn');
+const citySearch = document.getElementById('citySearch');
+const cityBox = document.getElementById('cityBox');
+const gibFCCs = document.getElementById('gibFCCs');
 
 
 // ====================
 //   INITIALIZATIONS
 // ====================
 
-const APIurl = 'https://api.github.com/repos/IBM/clai/issues?per_page=5';
+const APIurl = 'https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=minutely,hourly,daily,alerts&appid={3b3319e2a4bdc403d7f45843c07de674}';
 
 
 // ====================
@@ -26,7 +27,7 @@ const APIurl = 'https://api.github.com/repos/IBM/clai/issues?per_page=5';
 
 function getAPI() {
 
-  fetch(requestUrl)
+  fetch(APIurl)
 
     .then(function (response) {
       return response.json();
@@ -42,8 +43,15 @@ function getAPI() {
     //     issueContainer.append(userName);
     //     issueContainer.append(issueTitle);
     //   }
+        console.log(data.current.temp);
     });
 }
 
-fetchBtn.on('click', getAPI);
+function btnGO(e) {
+    // e.preventDefault();
+    var cityName = citySearch.value;
+    console.log(cityName);
+};
+
+fetchBtn.addEventListener("click", btnGO)
 
