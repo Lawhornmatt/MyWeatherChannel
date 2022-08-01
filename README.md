@@ -37,7 +37,7 @@ Click in the search field and type in the city you want to see the weather of. H
 
 
 ## SCREENSHOT:
-[See given mockup here](./assets/images/wv-screenshot.png)
+<img style="transform: scale(0.8)" src="./assets/images/wv-screenshot.png" alt="Screenshot of the Weather API"/>
 
 ## VISIT:
 Please visit [my weather application](https://lawhornmatt.github.io/Ch6_MyWeatherChannel/) to help plan your next trip!
