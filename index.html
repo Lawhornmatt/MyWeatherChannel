@@ -12,6 +12,12 @@
   <title>Weather API</title>
   <link rel="icon" href="./assets/images/weather.ico" type="image/x-icon">
 
+  <!-- Moment.js stuff  -->
+  <script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+  ></script>
+
   <!-- Bootstrap  -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
 
@@ -19,8 +25,6 @@
   <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="./assets/css/style.css" />
 
-  <!-- jQuery  -->
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 </head>
 
 <body>
@@ -39,14 +43,14 @@
       <!-- ==================== -->
       <!--  SEARCH & HISTORY    -->
       <!-- ==================== -->  
-      <section class="col-3">
+      <section class="col-2">
 
         <!-- Container for search bar and button -->
         <form>
           <h2>Search for a City:</h2>
-          <input type="text" class="form-control" id="citySearch" placeholder="Austin, Tx" aria-label="CityToSearch"> 
+          <input type="text" class="form-control" id="locSearch" placeholder="City, State, Country" aria-label="CityToSearch"> 
           <div class="px-3 mt-3">
-            <button type="button" class="btn btn-danger btn-block">Search</button>
+            <button type="button" class="btn btn-danger btn-block" id="searchBtn">Search</button>
           </div>
         </form>
 
@@ -54,34 +58,34 @@
         <hr class="my-4 bg-light">
 
         <!-- Container for the dynamic search history  -->
-        <div class="px-2">
-          <button type="button" class="btn btn-light btn-block">Example</button>
-          <button type="button" class="btn btn-light btn-block">Example</button>
-          <button type="button" class="btn btn-light btn-block">Example</button>
+        <div class="px-2" id="historyContainer">
+          <!-- <button type="button" class="btn btn-light btn-block">Example</button> -->
         </div>
       </section>
 
       <!-- ==================== -->
       <!--      DISPLAY         -->
       <!-- ==================== --> 
-      <section class="col-9" id="displaySect">
+      <section class="col-10" id="displaySect">
 
         <!-- Displays the searched city along with Temp, Wind, Humi, and UV -->
         <div class="border border-white p-2" id="cityBox">
-          <h1>Houston + Date</h1>
-          <p>Temp: XX</p>
-          <p>Humidity: YY</p>
-          <p>UV index: BB</p>
+          <div class="d-flex align-items-center">
+            <h1>How's the Weather up there?</h1>
+          </div>
+          <p>Check the Temperature</p>
+          <p>Check the Humidity</p>
+          <p>Check the UV Index</p>
         </div>
 
         <!-- Displays searched City's 5-day forcast  -->
         <div class="my-4">
           <h2>5-day Forecast:</h2>
           <div class="container-fluid">
-            <div class="row">
+            <div class="row" id="gibFCCs"> <!-- gib me Forecast Cards-->
 
-              <!-- Example future forcast card  -->
-              <div class="card bg-secondary col-2 p-0 mx-3">
+              <!-- Example future forcast card 
+              <div class="card bg-secondary col-2 p-0 mx-3 mb-3">
                 <div class="card-header m-0">
                   <p class="text-center m-0">Date</p>
                 </div>
@@ -91,59 +95,7 @@
                   <p>Humidity: YY</p>
                   <p>UV index: BB</p>
                 </div>
-              </div>
-
-              <!-- Example future forcast card  -->
-              <div class="card bg-secondary col-2 p-0 mx-3">
-                <div class="card-header m-0">
-                  <p class="text-center m-0">Date</p>
-                </div>
-                <div class="card-body">
-                  <img class="smlThumbNail" src="./assets/images/weather.ico"></img>
-                  <p>Temp: XX</p>
-                  <p>Humidity: YY</p>
-                  <p>UV index: BB</p>
-                </div>
-              </div>
-
-              <!-- Example future forcast card  -->
-              <div class="card bg-secondary col-2 p-0 mx-3">
-                <div class="card-header m-0">
-                  <p class="text-center m-0">Date</p>
-                </div>
-                <div class="card-body">
-                  <img class="smlThumbNail" src="./assets/images/weather.ico"></img>
-                  <p>Temp: XX</p>
-                  <p>Humidity: YY</p>
-                  <p>UV index: BB</p>
-                </div>
-              </div>
-
-              <!-- Example future forcast card  -->
-              <div class="card bg-secondary col-2 p-0 mx-3">
-                <div class="card-header m-0">
-                  <p class="text-center m-0">Date</p>
-                </div>
-                <div class="card-body">
-                  <img class="smlThumbNail" src="./assets/images/weather.ico"></img>
-                  <p>Temp: XX</p>
-                  <p>Humidity: YY</p>
-                  <p>UV index: BB</p>
-                </div>
-              </div>
-
-              <!-- Example future forcast card  -->
-              <div class="card bg-secondary col-2 p-0 mx-3">
-                <div class="card-header m-0">
-                  <p class="text-center m-0">Date</p>
-                </div>
-                <div class="card-body">
-                  <img class="smlThumbNail" src="./assets/images/weather.ico"></img>
-                  <p>Temp: XX</p>
-                  <p>Humidity: YY</p>
-                  <p>UV index: BB</p>
-                </div>
-              </div>
+              </div> -->
 
             </div>
           </div>
@@ -153,11 +105,6 @@
 
     </div>
   </div>
-
-
-  <!-- jQuery  -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <!-- My JS Script  -->
   <script src="./libs/main.js" type="module"></script>

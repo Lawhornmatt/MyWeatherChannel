@@ -3,7 +3,9 @@ This is the README.md for the Challenge Six "Weather App" for the UT Coding Boot
 
 ## BUGS:
 
-Currently, no known bugs
+1) Only cities are searchable. Openweather's Geocoding API allows for searching via state and country fields but the way it is currently set up, everything is passed through the city fields. So, searching for Springfield, Louisiana will still give you Springfield, Illinois. I will fix this at a future date, but for now, Weather View being city only gets the job done for the class criteria.
+
+2) Shorthand for states, like LA for Louisiana, will completely befuddle the Geocoding API. Best to leave them off. Will be fixed once I clear up bug #1 above.
 
 ## CRITERIA: 
 
@@ -31,10 +33,11 @@ THEN I am again presented with current and future conditions for that city
 
 ## HOW TO:
 
-TBD
+Click in the search field and type in the city you want to see the weather of. Hit search. The current weather and a five day forecast will be displayed. Search as many cities as you please (unless it's more than 60 in an hour, then please don't, my free API key can only do so much...). Revisit any previous search by clicking the button with the city name on it beneath the search bar.
+
 
 ## SCREENSHOT:
-TBD
+[See given mockup here](./assets/images/wv-screenshot.png)
 
 ## VISIT:
 Please visit [my weather application](https://lawhornmatt.github.io/Ch6_MyWeatherChannel/) to help plan your next trip!
