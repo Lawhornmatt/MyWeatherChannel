@@ -25,10 +25,9 @@ var locationName;
 //      FUNCTIONS
 // ====================
 
-//Gets called by clicking the button. 
-//Gathers the input'd info, sanitizes it, then
-//Begins am async next() chain access all location weather data
-//Culminating in a button made that can store whatever data of that locaton
+
+//BTN-GO
+//Called by search btn, sani'd input, passes input to the API Chain
 function btnGO() {
 
     //Sanitize search inputs
@@ -45,14 +44,18 @@ function btnGO() {
         console.log('You searched for: ' + locationName);
     }
 
+    //Removes any old forecasts before we start the chain
     infantAnnihilator(gibFCCs);
+    //First of the API Chain: geoAPI -> currentAPI -> forecastAPI
     geoAPI();
 };
 
 
+//GEOCODING-API
 //First, we use openweather's Geocoding API to get the needed Lat and Long from the user input
 function geoAPI() {
 
+    //Build the appropriate url from the sani'd locationName
     var LONGLATurl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + locationName + '&limit=1&appid=3b3319e2a4bdc403d7f45843c07de674';
     
     const geoData = fetch(LONGLATurl)
@@ -61,11 +64,13 @@ function geoAPI() {
         return response.json();
     })
 
+    //We now have the LATITUDE and LOGITUDE of our city
     .then((data) => {
-        console.log(data);
+        // console.log(data); //See the data from the Geocoding API
         return [data[0].lat, data[0].lon];
     });
 
+    //Takes those Coords and passes them into the two APIs for display on the site
     const giveLongLats = () => {
         geoData.then((a) => {
             // Call a function to update cityBox and make a history button 
@@ -75,9 +80,11 @@ function geoAPI() {
             });
     };
 
+    //Probably don't need this and just have the function automatically get called above...
     giveLongLats();
 };
 
+//CURRENT-API
 //Second, we then pass those Lat and Long into the OneCall openweather API andtrim it down to only give current weather
 function currentAPI(Lat, Lon) {
 
@@ -101,7 +108,7 @@ function currentAPI(Lat, Lon) {
     });
 };
     
-    
+//GENERATE_HISTORY_BUTTON
 //Thirdly, we generate a history button with all that data appended to it
 function genHB(locationName, Lat, Lon) {
 
@@ -118,6 +125,7 @@ function genHB(locationName, Lat, Lon) {
     hisCon.appendChild(freshBtn);
 };
 
+//GENERATE_CITY_BOX
 //Here, we generate and display all the current weather data in the cutyBox element
 function genCB(place, icon, temp, humidity, uvi) {
 
@@ -130,6 +138,7 @@ function genCB(place, icon, temp, humidity, uvi) {
     cityBox.childNodes[7].innerHTML = ('<p>UV index: '+ uvi +'</p>');
 };
 
+//FORECAST-API
 //Lastly, we then pass those Lat and Long into the forecast openweather API
 function forecastAPI(Lat, Lon) {
 
@@ -151,6 +160,8 @@ function forecastAPI(Lat, Lon) {
     });
 };
 
+//GENERATE_FORECAST_CARDS
+//Creates all the elements, attaches the data, and appends them in the HTML
 function genFC(index, icon, temp, wind, humid) {
     // Generate the elements 
     let freshCard = document.createElement('div');
@@ -196,7 +207,7 @@ function genFC(index, icon, temp, wind, humid) {
     gibFCCs.appendChild(freshCard);
 }
 
-
+//EVENT_LISTENERS
 //Adds event listener to search button
 searchBtn.addEventListener("click", btnGO);
 
