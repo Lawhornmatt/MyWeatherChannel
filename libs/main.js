@@ -21,24 +21,14 @@ const gibFCCs = document.getElementById('gibFCCs'); //append forecast weather ca
 
 var locationName;
 
-// var currentLAT;
-// var currentLON;
-
-// var currentLAT = String(29.7589382);
-// var currentLON = String(-95.3676974);
-
-// currentLAT = currentLAT.substring(0, 5);
-// console.log('LATitude is: ' + currentLAT);
-// currentLON = currentLON.substring(0, 5);
-// console.log('LONgitude is: ' + currentLON);
-
 // ====================
 //      FUNCTIONS
 // ====================
 
 //Gets called by clicking the button. 
 //Gathers the input'd info, sanitizes it, then
-//Bifurcates and passes info into //History and into //getAPI
+//Begins am async next() chain access all location weather data
+//Culminating in a button made that can store whatever data of that locaton
 function btnGO() {
 
     //Sanitize search inputs
@@ -54,64 +44,17 @@ function btnGO() {
     } else {
         console.log('You searched for: ' + locationName);
     }
-    
-    var LONGLATurl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + locationName + '&limit=1&appid=3b3319e2a4bdc403d7f45843c07de674';
 
-    // generate a History Button
-    // genHB(locationName);
-
-    //fetch from the Weather API
-
-    // const geoData = fetch(LONGLATurl)
-
-    // .then(function (response) {
-    //   return response.json();
-    // })
-
-    // .then((data) => {
-    //   return [data[0].lat, data[0].lon];
-    // });
-
-    // const giveLongLats = () => {
-    //     geoData.then((a) => {
-    //         console.log(a);
-    //         });
-    // };
-
-    // giveLongLats();
-
-    geoAPI(LONGLATurl);
-
-
-
-    // let locationLAT = locaGEO.then(value => value[0].lat);
-    // let locationLON = locaGEO.then(value => value[0].lon);
-    
-    // mainAPI(locationLAT, locationLON);
-    // var locationData = mainAPI(locationLAT, locationLON);
-};
-
-//Generates a History Button
-function genHB(locationName, Lat, Lon) {
-
-    let freshBtn = document.createElement('button');
-    freshBtn.type = 'button';
-    freshBtn.classList.add('btn', 'btn-light', 'btn-block', 'btntizeMe');
-    freshBtn.innerHTML = locationName;
-
-    freshBtn.dataset.lat = Lat;
-    freshBtn.dataset.lon = Lon;
-
-    //freshBtn.addEventListener("click", MAKESOMETHINGNEW); //Just goes straight to fetchAPI and skips all the other stuff
-
-    hisCon.appendChild(freshBtn);
+    geoAPI();
 };
 
 
 //First, we use openweather's Geocoding API to get the needed Lat and Long from the user input
-function geoAPI(url) {
+function geoAPI() {
 
-    const geoData = fetch(url)
+    var LONGLATurl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + locationName + '&limit=1&appid=3b3319e2a4bdc403d7f45843c07de674';
+    
+    const geoData = fetch(LONGLATurl)
 
     .then(function (response) {
       return response.json();
@@ -138,13 +81,30 @@ function mainAPI(Lat, Lon) {
     fetch(TRUEurl)
 
       .then(function (response) {
-        return response.json();
-      })
+          return response.json();
+    })
 
       .then(function (data) {
           console.log(data);
           genHB(locationName, Lat, Lon);
-      });
+    });
+};
+    
+    
+//Generates a History Button
+function genHB(locationName, Lat, Lon) {
+
+    let freshBtn = document.createElement('button');
+    freshBtn.type = 'button';
+    freshBtn.classList.add('btn', 'btn-light', 'btn-block', 'btntizeMe');
+    freshBtn.innerHTML = locationName;
+
+    freshBtn.dataset.lat = Lat;
+    freshBtn.dataset.lon = Lon;
+
+    //freshBtn.addEventListener("click", MAKESOMETHINGNEW); //Just goes straight to fetchAPI and skips all the other stuff
+
+    hisCon.appendChild(freshBtn);
 };
 
 //Adds event listener to search button
