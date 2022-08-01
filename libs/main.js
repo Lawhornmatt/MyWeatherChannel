@@ -73,7 +73,7 @@ function geoAPI() {
     giveLongLats();
 };
 
-//We then pass the those Lat and Long into the main openweather API 
+//Second, we then pass those Lat and Long into the main openweather API 
 function mainAPI(Lat, Lon) {
 
     var TRUEurl = 'https://api.openweathermap.org/data/2.5/onecall?lat='+Lat+'&lon='+Lon+'&exclude=minutely,hourly,daily,alerts&appid=3b3319e2a4bdc403d7f45843c07de674';
@@ -91,7 +91,7 @@ function mainAPI(Lat, Lon) {
 };
     
     
-//Generates a History Button
+//Thirdly, we generate a history button with all that data appended to it
 function genHB(locationName, Lat, Lon) {
 
     let freshBtn = document.createElement('button');
