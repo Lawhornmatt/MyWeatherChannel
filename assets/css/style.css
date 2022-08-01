@@ -35,6 +35,133 @@ body {
     margin: .5rem;
 }
 
+/* ICON LIBRARY */
+
+.icon01d {
+    background: url('../images/weatherICONS/01d.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon01n {
+    background: url('../images/weatherICONS/01n.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon02d {
+    background: url('../images/weatherICONS/02d.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon02n {
+    background: url('../images/weatherICONS/02n.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon03d {
+    background: url('../images/weatherICONS/03d.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon03n {
+    background: url('../images/weatherICONS/03n.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon04d {
+    background: url('../images/weatherICONS/0dd.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon04n {
+    background: url('../images/weatherICONS/04n.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon09d {
+    background: url('../images/weatherICONS/09d.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon09n {
+    background: url('../images/weatherICONS/09n.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon10d {
+    background: url('../images/weatherICONS/10d.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon10n {
+    background: url('../images/weatherICONS/10n.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon11d {
+    background: url('../images/weatherICONS/11d.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon11n {
+    background: url('../images/weatherICONS/11n.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon13d {
+    background: url('../images/weatherICONS/13d.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon13n {
+    background: url('../images/weatherICONS/13n.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon50d {
+    background: url('../images/weatherICONS/50d.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+.icon50n {
+    background: url('../images/weatherICONS/50n.png') no-repeat center;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
 
 /* ACCESSIBILITY  */
 @media (max-width: 1400px) {
@@ -50,3 +177,4 @@ body {
 @media (max-width: 500px) {
 
 }
+

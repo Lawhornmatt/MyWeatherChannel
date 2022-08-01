@@ -45,7 +45,11 @@ function btnGO() {
         console.log('You searched for: ' + locationName);
     }
 
-    geoAPI();
+    var place = locationName;
+    var icon = '03d';
+    // console.log(cityBox.childNodes[1]);
+    cityBox.childNodes[1].innerHTML = ('<h1 class="m-0">'+place+'</h1>' + ' <i class="icon'+icon+'"></i>');
+    // geoAPI();
 };
 
 
@@ -57,16 +61,19 @@ function geoAPI() {
     const geoData = fetch(LONGLATurl)
 
     .then(function (response) {
-      return response.json();
+        return response.json();
     })
 
     .then((data) => {
-      return [data[0].lat, data[0].lon];
+        return [data[0].lat, data[0].lon];
     });
 
     const giveLongLats = () => {
         geoData.then((a) => {
-            mainAPI(a[0], a[1]);
+            // Call a function to update cityBox and make a history button 
+            currentAPI(a[0], a[1]);
+            // Call a function to fetch a forecast and update the forecast box 
+            // forecastAPI(a[0], a[1]);
             });
     };
 
@@ -74,19 +81,23 @@ function geoAPI() {
 };
 
 //Second, we then pass those Lat and Long into the main openweather API 
-function mainAPI(Lat, Lon) {
+function currentAPI(Lat, Lon) {
 
-    var TRUEurl = 'https://api.openweathermap.org/data/2.5/onecall?lat='+Lat+'&lon='+Lon+'&exclude=minutely,hourly,daily,alerts&appid=3b3319e2a4bdc403d7f45843c07de674';
+    var currentURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='+Lat+'&lon='+Lon+'&exclude=minutely,hourly,daily,alerts&appid=3b3319e2a4bdc403d7f45843c07de674';
 
-    fetch(TRUEurl)
+    fetch(currentURL)
 
-      .then(function (response) {
-          return response.json();
+        .then(function (response) {
+            return response.json();
     })
 
-      .then(function (data) {
-          console.log(data);
-          genHB(locationName, Lat, Lon);
+        .then(function (data) {
+            console.log(data);
+            //   Makes history button 
+            genHB(locationName, Lat, Lon);
+            //   Updates cityBox // console.log('The icon: ' + data.current.weather[0].icon); // console.log('Temp: ' + data.current.temp); // console.log('HUmidity: ' + data.current.humidity); // console.log('uvi' + data.current.uvi);
+            genCB(locationName, data.current.weather[0].icon, data.current.temp, data.current.humidity, data.current.uvi);
+
     });
 };
     
@@ -105,6 +116,11 @@ function genHB(locationName, Lat, Lon) {
     //freshBtn.addEventListener("click", MAKESOMETHINGNEW); //Just goes straight to fetchAPI and skips all the other stuff
 
     hisCon.appendChild(freshBtn);
+};
+
+//Here, we generate and display all the current weather data in the cutyBox element
+function genCB(place, icon, temp, humidity, uvi) {
+    cityBox.firstChild.innerHTML = (place + ' <i class="icon'+icon+'"></i>');
 };
 
 //Adds event listener to search button
