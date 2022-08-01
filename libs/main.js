@@ -142,7 +142,7 @@ function forecastAPI(Lat, Lon) {
     })
 
         .then(function (data) {
-            console.log(data);
+            // console.log(data);
             for (let i=0;i<5;i++) {
                 var farenFore = (((data.list[i].main.temp - 273.15) * 9/5) + 32).toFixed(1);
                 genFC(i, data.list[i].weather[0].icon, farenFore, data.list[i].wind.speed, data.list[i].main.humidity);
