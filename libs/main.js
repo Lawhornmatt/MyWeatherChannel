@@ -45,11 +45,8 @@ function btnGO() {
         console.log('You searched for: ' + locationName);
     }
 
-    var place = locationName;
-    var icon = '03d';
-    // console.log(cityBox.childNodes[1]);
-    cityBox.childNodes[1].innerHTML = ('<h1 class="m-0">'+place+'</h1>' + ' <i class="icon'+icon+'"></i>');
-    // geoAPI();
+    infantAnnihilator(gibFCCs);
+    geoAPI();
 };
 
 
@@ -65,6 +62,7 @@ function geoAPI() {
     })
 
     .then((data) => {
+        console.log(data);
         return [data[0].lat, data[0].lon];
     });
 
@@ -73,14 +71,14 @@ function geoAPI() {
             // Call a function to update cityBox and make a history button 
             currentAPI(a[0], a[1]);
             // Call a function to fetch a forecast and update the forecast box 
-            // forecastAPI(a[0], a[1]);
+            forecastAPI(a[0], a[1]);
             });
     };
 
     giveLongLats();
 };
 
-//Second, we then pass those Lat and Long into the main openweather API 
+//Second, we then pass those Lat and Long into the OneCall openweather API andtrim it down to only give current weather
 function currentAPI(Lat, Lon) {
 
     var currentURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='+Lat+'&lon='+Lon+'&exclude=minutely,hourly,daily,alerts&appid=3b3319e2a4bdc403d7f45843c07de674';
@@ -92,11 +90,13 @@ function currentAPI(Lat, Lon) {
     })
 
         .then(function (data) {
-            console.log(data);
+            // console.log(data); //Use to see the current weather displayed in console
             //   Makes history button 
             genHB(locationName, Lat, Lon);
-            //   Updates cityBox // console.log('The icon: ' + data.current.weather[0].icon); // console.log('Temp: ' + data.current.temp); // console.log('HUmidity: ' + data.current.humidity); // console.log('uvi' + data.current.uvi);
-            genCB(locationName, data.current.weather[0].icon, data.current.temp, data.current.humidity, data.current.uvi);
+            //   Updates cityBox 
+            // But first lets turn this ridiculous temp to FerenAmericaDegrees
+            var fTemp = (((data.current.temp - 273.15) * 9/5) + 32).toFixed(1);
+            genCB(locationName, data.current.weather[0].icon, fTemp, data.current.humidity, data.current.uvi);
 
     });
 };
@@ -120,9 +120,91 @@ function genHB(locationName, Lat, Lon) {
 
 //Here, we generate and display all the current weather data in the cutyBox element
 function genCB(place, icon, temp, humidity, uvi) {
-    cityBox.firstChild.innerHTML = (place + ' <i class="icon'+icon+'"></i>');
+
+    cityBox.childNodes[1].innerHTML = ('<h1 class="m-0">'+place+'</h1>' + ' <i class="icon'+icon+'"></i>' + '<h1 class="m-0">'+moment().format('MMMM Do YYYY')+'</h1>');
+
+    cityBox.childNodes[3].innerHTML = ('<p>Temp: '+ temp +'</p>');
+
+    cityBox.childNodes[5].innerHTML = ('<p>Humidity: '+ humidity +'</p>');
+
+    cityBox.childNodes[7].innerHTML = ('<p>UV index: '+ uvi +'</p>');
 };
+
+//Lastly, we then pass those Lat and Long into the forecast openweather API
+function forecastAPI(Lat, Lon) {
+
+    var forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?lat='+Lat+'&lon='+Lon+'&appid=3b3319e2a4bdc403d7f45843c07de674';
+
+    fetch(forecastURL)
+
+        .then(function (response) {
+            return response.json();
+    })
+
+        .then(function (data) {
+            console.log(data);
+            for (let i=0;i<5;i++) {
+                var farenFore = (((data.list[i].main.temp - 273.15) * 9/5) + 32).toFixed(1);
+                genFC(i, data.list[i].weather[0].icon, farenFore, data.list[i].wind.speed, data.list[i].main.humidity);
+            };
+
+    });
+};
+
+function genFC(index, icon, temp, wind, humid) {
+    // Generate the elements 
+    let freshCard = document.createElement('div');
+    freshCard.classList.add('card', 'bg-secondary', 'col-2', 'p-0', 'mx-3', 'mb-3');
+
+    let freshCHeader = document.createElement('div');
+    freshCHeader.classList.add('card-header', 'm-0');
+
+    let dateText = document.createElement('p');
+    dateText.classList.add('text-center', 'm-0');
+    dateText.innerHTML = moment().add((index+1), 'days').format('MMMM Do YYYY');
+
+    let freshCBody = document.createElement('div');
+    freshCBody.classList.add('card-body');
+
+    let freshIcon = document.createElement('i');
+    freshIcon.classList.add('icon'+icon);
+
+    let tempText = document.createElement('p');
+    tempText.classList.add('m-0');
+    tempText.innerHTML = ('<p>Temp: ' + temp + '</p>');
+
+    let windText = document.createElement('p');
+    windText.classList.add('m-0');
+    windText.innerHTML = ('<p>Wind: ' + wind + ' MPH</p>');
+
+    let humidText = document.createElement('p');
+    humidText.classList.add('m-0');
+    humidText.innerHTML = ('<p>Humidity: ' + humid + '</p>');
+
+    // Append Everything...
+    // ...first to the header
+    freshCHeader.appendChild(dateText);
+    // ...then to the body
+    freshCBody.appendChild(freshIcon);
+    freshCBody.appendChild(tempText)
+    freshCBody.appendChild(windText)
+    freshCBody.appendChild(humidText)
+    // ...then both those to the card
+    freshCard.appendChild(freshCHeader);
+    freshCard.appendChild(freshCBody);
+    // ...and then the card to it's container 
+    gibFCCs.appendChild(freshCard);
+}
+
 
 //Adds event listener to search button
 searchBtn.addEventListener("click", btnGO);
 
+
+//INFANT ANNIHILATOR
+//Removes all children from a node, src'd from here: https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
+function infantAnnihilator(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
