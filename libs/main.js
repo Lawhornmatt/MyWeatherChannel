@@ -196,7 +196,7 @@ function genFC(index, icon, temp, wind, humid) {
 
     let tempText = document.createElement('p');
     tempText.classList.add('m-0');
-    tempText.innerHTML = ('<p>Temp: ' + temp + '</p>');
+    tempText.innerHTML = ('<p>Temp: ' + temp + '°</p>');
 
     let windText = document.createElement('p');
     windText.classList.add('m-0');
@@ -204,7 +204,7 @@ function genFC(index, icon, temp, wind, humid) {
 
     let humidText = document.createElement('p');
     humidText.classList.add('m-0');
-    humidText.innerHTML = ('<p>Humidity: ' + humid + '</p>');
+    humidText.innerHTML = ('<p>Humidity: ' + humid + '%</p>');
 
     // Append Everything...
     // ...first to the header
