@@ -137,9 +137,9 @@ function genCB(place, icon, temp, humidity, uvi) {
 
     cityBox.childNodes[1].innerHTML = ('<h1 class="m-0">'+place+'</h1>' + ' <i class="icon'+icon+'"></i>' + '<h1 class="m-0">'+moment().format('MMMM Do YYYY')+'</h1>');
 
-    cityBox.childNodes[3].innerHTML = ('<p>Temp: '+ temp +'</p>');
+    cityBox.childNodes[3].innerHTML = ('<p>Temp: '+ temp +'°</p>');
 
-    cityBox.childNodes[5].innerHTML = ('<p>Humidity: '+ humidity +'</p>');
+    cityBox.childNodes[5].innerHTML = ('<p>Humidity: '+ humidity +'%</p>');
 
     if (uvi<=3) {
         cityBox.childNodes[7].innerHTML = ('<div class="d-flex align-items-center"><p>UV Index: '+uvi+'</p><i class="bg-success indicator"></i></div>');
