@@ -66,7 +66,7 @@ function geoAPI() {
 
     //We now have the LATITUDE and LOGITUDE of our city
     .then((data) => {
-        // console.log(data); //See the data from the Geocoding API
+        console.log(data); //See the data from the Geocoding API
         return [data[0].lat, data[0].lon];
     });
 
@@ -97,7 +97,7 @@ function currentAPI(Lat, Lon) {
     })
 
         .then(function (data) {
-            // console.log(data); //Use to see the current weather displayed in console
+            console.log(data); //Use to see the current weather displayed in console
             //   Makes history button 
             genHB(locationName, Lat, Lon);
             //   Updates cityBox 
@@ -120,10 +120,24 @@ function genHB(locationName, Lat, Lon) {
     freshBtn.dataset.lat = Lat;
     freshBtn.dataset.lon = Lon;
 
-    //freshBtn.addEventListener("click", MAKESOMETHINGNEW); //Just goes straight to fetchAPI and skips all the other stuff
+    // freshBtn.addEventListener("click", redoAPI); //Just goes straight to fetchAPI and skips all the other stuff
 
     hisCon.appendChild(freshBtn);
 };
+
+function redoAPI(e) {
+    // var datButton = e.this;
+
+    var cityName = this.innerHTML;
+    var Lat = this.dataset.lat 
+    var Lon = this.dataset.lon
+    
+    console.log(cityName);
+    console.log('Latitude: '+Lat);
+    console.log('Longitude: '+Lon);
+    // console.log(this.dataset.lat);
+    // console.log(datButton.dataset.lon);
+}
 
 //GENERATE_CITY_BOX
 //Here, we generate and display all the current weather data in the cutyBox element
@@ -151,7 +165,7 @@ function forecastAPI(Lat, Lon) {
     })
 
         .then(function (data) {
-            // console.log(data);
+            console.log(data);
             for (let i=0;i<5;i++) {
                 var farenFore = (((data.list[i].main.temp - 273.15) * 9/5) + 32).toFixed(1);
                 genFC(i, data.list[i].weather[0].icon, farenFore, data.list[i].wind.speed, data.list[i].main.humidity);
@@ -211,6 +225,10 @@ function genFC(index, icon, temp, wind, humid) {
 //Adds event listener to search button
 searchBtn.addEventListener("click", btnGO);
 
+//REMOVE LATER BY COMMENTS -- DEBUG
+//I used these to debug the history buttons without depleting my 60 openweather requests per hour
+let debugBtn = document.getElementById('DEBUG');
+debugBtn.addEventListener("click", redoAPI);
 
 //INFANT ANNIHILATOR
 //Removes all children from a node, src'd from here: https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
