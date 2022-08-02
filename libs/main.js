@@ -43,6 +43,8 @@ function btnGO() {
     } else {
         console.log('You searched for: ' + locationName);
     }
+    
+    locSearch.value = '';
 
     //Removes any old forecasts before we start the chain
     infantAnnihilator(gibFCCs);
