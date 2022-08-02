@@ -140,7 +140,7 @@ function genCB(place, icon, temp, humidity, uvi) {
 
     cityBox.childNodes[5].innerHTML = ('<p>Humidity: '+ humidity +'</p>');
 
-    cityBox.childNodes[7].innerHTML = ('<p>UV index: '+ uvi +'</p>');
+    cityBox.childNodes[7].innerHTML = ('<div class="d-flex align-items-center"><p>UV Index: '+uvi+'</p><i class="bg-success indicator"></i></div>');
 };
 
 //FORECAST-API

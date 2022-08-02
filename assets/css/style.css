@@ -25,6 +25,12 @@ body {
     max-height: 4rem;
 }
 
+.indicator {
+    width: 2rem;
+    height: 2rem;
+    border-radius: .8rem;
+}
+
 /* IDs  */
 #titleEl {
     font-size: 4rem;
