@@ -46,6 +46,7 @@ function btnGO() {
 
     //Removes any old forecasts before we start the chain
     infantAnnihilator(gibFCCs);
+
     //First of the API Chain: geoAPI -> currentAPI -> forecastAPI
     geoAPI();
 };
@@ -121,7 +122,7 @@ function genHB(locationName, Lat, Lon) {
     freshBtn.dataset.lat = Lat;
     freshBtn.dataset.lon = Lon;
 
-    // freshBtn.addEventListener("click", redoAPI); //Just goes straight to fetchAPI and skips all the other stuff
+    freshBtn.addEventListener("click", redoAPI); //Just goes redoAPI() which will refresh page without making new button
 
     hisCon.appendChild(freshBtn);
 };
@@ -211,24 +212,24 @@ function genFC(index, icon, temp, wind, humid) {
 
 //REDO-API
 //Re-inputs the Lat and Lon of a history button into the APIs all over again
-function redoAPI(e) {
-    // var datButton = e.this;
+function redoAPI() {
+
+    //Removes any old forecasts before we start the chain
+    infantAnnihilator(gibFCCs);    
 
     locationName = this.innerHTML;
     var Lat = this.dataset.lat 
     var Lon = this.dataset.lon
     
-    // console.log(cityName);
-    console.log('Latitude: '+Lat);
-    console.log('Longitude: '+Lon);
-
+    console.log('==========')
+    console.log('Re-searching for: '+locationName);
+    console.log('Lat: '+Lat+' Long: '+Lon);
 
     //First redo currentAPI
     currentAPI(Lat, Lon);
     //Second redo forecastAPI
     forecastAPI(Lat, Lon);
-
-}
+};
 
 //EVENT_LISTENERS
 //Adds event listener to search button
@@ -236,8 +237,8 @@ searchBtn.addEventListener("click", btnGO);
 
 //REMOVE LATER BY COMMENTS -- DEBUG
 //I used these to debug the history buttons without depleting my 60 openweather requests per hour
-let debugBtn = document.getElementById('DEBUG');
-debugBtn.addEventListener("click", redoAPI);
+// let debugBtn = document.getElementById('DEBUG');
+// debugBtn.addEventListener("click", redoAPI);
 
 //INFANT ANNIHILATOR
 //Removes all children from a node, src'd from here: https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
