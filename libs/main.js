@@ -73,6 +73,8 @@ function geoAPI() {
     //Takes those Coords and passes them into the two APIs for display on the site
     const giveLongLats = () => {
         geoData.then((a) => {
+            //   Makes history button 
+            genHB(locationName, a[0], a[1]);
             // Call a function to update cityBox and make a history button 
             currentAPI(a[0], a[1]);
             // Call a function to fetch a forecast and update the forecast box 
@@ -98,10 +100,9 @@ function currentAPI(Lat, Lon) {
 
         .then(function (data) {
             console.log(data); //Use to see the current weather displayed in console
-            //   Makes history button 
-            genHB(locationName, Lat, Lon);
+
             //   Updates cityBox 
-            // But first lets turn this ridiculous temp to FerenAmericaDegrees
+            // But first lets turn this ridiculous Kelvin temp to FerenAmericaDegrees
             var fTemp = (((data.current.temp - 273.15) * 9/5) + 32).toFixed(1);
             genCB(locationName, data.current.weather[0].icon, fTemp, data.current.humidity, data.current.uvi);
 
@@ -125,19 +126,6 @@ function genHB(locationName, Lat, Lon) {
     hisCon.appendChild(freshBtn);
 };
 
-function redoAPI(e) {
-    // var datButton = e.this;
-
-    var cityName = this.innerHTML;
-    var Lat = this.dataset.lat 
-    var Lon = this.dataset.lon
-    
-    console.log(cityName);
-    console.log('Latitude: '+Lat);
-    console.log('Longitude: '+Lon);
-    // console.log(this.dataset.lat);
-    // console.log(datButton.dataset.lon);
-}
 
 //GENERATE_CITY_BOX
 //Here, we generate and display all the current weather data in the cutyBox element
@@ -219,6 +207,27 @@ function genFC(index, icon, temp, wind, humid) {
     freshCard.appendChild(freshCBody);
     // ...and then the card to it's container 
     gibFCCs.appendChild(freshCard);
+};
+
+//REDO-API
+//Re-inputs the Lat and Lon of a history button into the APIs all over again
+function redoAPI(e) {
+    // var datButton = e.this;
+
+    locationName = this.innerHTML;
+    var Lat = this.dataset.lat 
+    var Lon = this.dataset.lon
+    
+    // console.log(cityName);
+    console.log('Latitude: '+Lat);
+    console.log('Longitude: '+Lon);
+
+
+    //First redo currentAPI
+    currentAPI(Lat, Lon);
+    //Second redo forecastAPI
+    forecastAPI(Lat, Lon);
+
 }
 
 //EVENT_LISTENERS
