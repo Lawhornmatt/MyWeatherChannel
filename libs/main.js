@@ -41,6 +41,7 @@ function btnGO() {
     } else if (/(?!,)(?! )\W|_/.test(locationName)) {
         return console.log('No Odd Characters Please');
     } else {
+        locationName = capStr(locationName); //Capitalizes the first letter incase they didn't already
         console.log('You searched for: ' + locationName);
     }
     
@@ -140,7 +141,15 @@ function genCB(place, icon, temp, humidity, uvi) {
 
     cityBox.childNodes[5].innerHTML = ('<p>Humidity: '+ humidity +'</p>');
 
-    cityBox.childNodes[7].innerHTML = ('<div class="d-flex align-items-center"><p>UV Index: '+uvi+'</p><i class="bg-success indicator"></i></div>');
+    if (uvi<=3) {
+        cityBox.childNodes[7].innerHTML = ('<div class="d-flex align-items-center"><p>UV Index: '+uvi+'</p><i class="bg-success indicator"></i></div>');
+    } else if (uvi<=7) {
+        cityBox.childNodes[7].innerHTML = ('<div class="d-flex align-items-center"><p>UV Index: '+uvi+'</p><i class="bg-warning indicator"></i></div>');        
+    } else if (uvi<=10) {
+        cityBox.childNodes[7].innerHTML = ('<div class="d-flex align-items-center"><p>UV Index: '+uvi+'</p><i class="bg-danger indicator"></i></div>');        
+    } else {
+        cityBox.childNodes[7].innerHTML = ('<div class="d-flex align-items-center"><p>UV Index: '+uvi+'</p><i class="bg-UV indicator"></i></div>');        
+    }
 };
 
 //FORECAST-API
@@ -243,9 +252,15 @@ searchBtn.addEventListener("click", btnGO);
 // debugBtn.addEventListener("click", redoAPI);
 
 //INFANT ANNIHILATOR
-//Removes all children from a node, src'd from here: https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
+//Removes all children from a node
 function infantAnnihilator(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
-}
+};
+
+//CAPITALIZE
+//Capitalizes the initial character of a string
+function capStr(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
