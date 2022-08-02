@@ -60,7 +60,7 @@ function btnGO() {
 function geoAPI() {
 
     //Build the appropriate url from the sani'd locationName
-    var LONGLATurl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + locationName + '&limit=1&appid=3b3319e2a4bdc403d7f45843c07de674';
+    var LONGLATurl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + locationName + '&limit=1&appid=3b3319e2a4bdc403d7f45843c07de674';
     
     const geoData = fetch(LONGLATurl)
 
