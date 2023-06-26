@@ -40,7 +40,8 @@ Click in the search field and type in the city you want to see the weather of. H
 <img style="transform: scale(0.8)" src="./assets/images/wv-screenshot.png" alt="Screenshot of the Weather API"/>
 
 ## VISIT:
-Please visit [my weather application](https://lawhornmatt.github.io/Ch6_MyWeatherChannel/) to help plan your next trip!
+NOTE: API key has been disabled
+Click [here](https://lawhornmatt.github.io/MyWeatherChannel/) to help plan your next trip!
 
 ## CREDIT:
 Matthew Lawhorn, End July / Beginning August 2022
